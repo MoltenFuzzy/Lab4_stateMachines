@@ -105,4 +105,4 @@ tests = [
 	},
 ]
 
-# watch = ['PORTB']
+watch = ["SM1_STATE"]
