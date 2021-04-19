@@ -48,10 +48,6 @@ void TickLockSystem()
 		{
 			SM1_STATE = SM1_Lock;
 		}
-		else
-		{
-			SM1_STATE = SM1_Init;
-		}
 		break;
 	case SM1_Pound:
 		if (A1 && !A2) // making sure # is not pressed at the same time
@@ -63,10 +59,24 @@ void TickLockSystem()
 		SM1_STATE = SM1_Unlock;
 		break;
 	case SM1_Unlock:
-		SM1_STATE = SM1_Init;
+		if (A1)
+		{
+			SM1_STATE = SM1_Lock;
+		}
+		else
+		{
+			SM1_STATE = SM1_Init;
+		}
 		break;
 	case SM1_Lock:
-		SM1_STATE = SM1_Init;
+		if (A7)
+		{
+			SM1_STATE = SM1_Lock;
+		}
+		else
+		{
+			SM1_STATE = SM1_Init;
+		}
 		break;
 	default:
 		SM1_STATE = SM1_Init;
@@ -78,7 +88,6 @@ void TickLockSystem()
 	case SM1_SMStart:
 		break;
 	case SM1_Init:
-		B = 0;
 		break;
 	case SM1_Pound:
 		break;

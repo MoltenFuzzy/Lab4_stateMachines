@@ -32,7 +32,7 @@ tests = [
 	},
 	{
 		"description": "PINA7 locks the door",
-		"steps": [{"inputs": [("PINA", 0x08)], "iterations": 5}],
+		"steps": [{"inputs": [("PINA", 0x80)], "iterations": 5}],
 		"expected": [("PORTB", 0)],
 	},
 	{
@@ -54,4 +54,4 @@ tests = [
 	},
 ]
 
-watch = ["SM1_STATE", "B", "PINA"]
+watch = ["SM1_STATE", "B", "A"]

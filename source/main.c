@@ -59,10 +59,24 @@ void TickLockSystem()
         SM1_STATE = SM1_Unlock;
         break;
     case SM1_Unlock:
-        SM1_STATE = SM1_Init;
+        if (A1)
+        {
+            SM1_STATE = SM1_Lock;
+        }
+        else
+        {
+            SM1_STATE = SM1_Init;
+        }
         break;
     case SM1_Lock:
-        SM1_STATE = SM1_Init;
+        if (A7)
+        {
+            SM1_STATE = SM1_Lock;
+        }
+        else
+        {
+            SM1_STATE = SM1_Init;
+        }
         break;
     default:
         SM1_STATE = SM1_Init;
