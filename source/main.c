@@ -48,10 +48,6 @@ void TickLockSystem()
         {
             SM1_STATE = SM1_Lock;
         }
-        else
-        {
-            SM1_STATE = SM1_Init;
-        }
         break;
     case SM1_Pound:
         if (A1 && !A2) // making sure # is not pressed at the same time
