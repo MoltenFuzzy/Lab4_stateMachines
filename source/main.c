@@ -14,6 +14,7 @@
 #include "simAVRHeader.h"
 #endif
 
+unsigned char A = 0;
 unsigned char B = 0;
 
 enum SM1_STATES
@@ -28,6 +29,7 @@ enum SM1_STATES
 
 void TickLockSystem()
 {
+    A = PINA;
     unsigned char A1 = PINA & 0x02;
     unsigned char A2 = PINA & 0x04;
     unsigned char A7 = PINA & 0x80;
