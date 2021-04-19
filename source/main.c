@@ -15,6 +15,7 @@
 #endif
 
 unsigned char C;
+unsigned char A;
 unsigned char A0_was_pressed = 0;
 unsigned char A1_was_pressed = 0;
 
@@ -29,6 +30,7 @@ enum SM1_STATES
 
 void TickCounter()
 {
+    A = PINA;
     unsigned char A0 = PINA & 0x01;
     unsigned char A1 = PINA & 0x02;
     switch (SM1_STATE)
