@@ -112,17 +112,23 @@ void TickCounter()
     case SM1_SMStart:
         break;
     case SM1_Wait:
+        A0_was_pressed = A0;
+        A1_was_pressed = A1;
         break;
     case SM1_PressInc:
         C += 1;
         A0_was_pressed = A0;
+        A1_was_pressed = A1;
         break;
     case SM1_PressDec:
         C -= 1;
+        A0_was_pressed = A0;
         A1_was_pressed = A1;
         break;
     case SM1_Reset:
         C = 0;
+        A0_was_pressed = A0;
+        A1_was_pressed = A1;
         break;
     }
 }
