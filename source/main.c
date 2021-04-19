@@ -87,7 +87,7 @@ void TickCounter()
             SM1_STATE = SM1_Wait;
         break;
     case SM1_Reset:
-        if ((C <= 9) && A0 && !A0_was_pressed)
+        if ((C < 9) && A0 && !A0_was_pressed)
         {
             SM1_STATE = SM1_PressInc;
         }
@@ -127,8 +127,6 @@ void TickCounter()
         break;
     case SM1_Reset:
         C = 0;
-        A0_was_pressed = A0;
-        A1_was_pressed = A1;
         break;
     }
 }
