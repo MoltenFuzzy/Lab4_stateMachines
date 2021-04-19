@@ -31,3 +31,5 @@ tests = [
 		"expected": [("PORTB", 0x0A), ("PORTC", 0x50)],
 	},
 ]
+
+watch = ["SM1_STATE"]

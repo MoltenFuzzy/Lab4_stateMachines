@@ -15,6 +15,7 @@
 #endif
 
 unsigned char C;
+unsigned char A;
 unsigned char A0_was_pressed = 0;
 unsigned char A1_was_pressed = 0;
 
@@ -29,6 +30,7 @@ enum SM1_STATES
 
 void TickCounter()
 {
+	A = PINA;
 	unsigned char A0 = PINA & 0x01;
 	unsigned char A1 = PINA & 0x02;
 	switch (SM1_STATE)
@@ -38,8 +40,12 @@ void TickCounter()
 		C = 7;
 		break;
 	case SM1_Wait:
+		if (A0 && A1)
+		{
+			SM1_STATE = SM1_Reset;
+		}
 		// to prevent holding of button by checking previous A0 state
-		if ((C <= 9) && A0 && !A0_was_pressed)
+		else if ((C < 9) && A0 && !A0_was_pressed)
 		{
 			SM1_STATE = SM1_PressInc;
 		}
@@ -47,55 +53,55 @@ void TickCounter()
 		{
 			SM1_STATE = SM1_PressDec;
 		}
-		else if (A0 && A1)
-		{
-			SM1_STATE = SM1_Reset;
-		}
+
 		break;
 	case SM1_PressInc:
-		if ((C <= 9) && A0 && !A0_was_pressed)
+		if (A0 && A1)
+		{
+			SM1_STATE = SM1_Reset;
+		}
+		// to prevent holding of button by checking previous A0 state
+		else if ((C < 9) && A0 && !A0_was_pressed)
 		{
 			SM1_STATE = SM1_PressInc;
 		}
 		else if ((C > 0) && A1 && !A1_was_pressed)
 		{
 			SM1_STATE = SM1_PressDec;
-		}
-		else if (A0 && A1)
-		{
-			SM1_STATE = SM1_Reset;
 		}
 		else
 			SM1_STATE = SM1_Wait;
 		break;
 	case SM1_PressDec:
-		if ((C <= 9) && A0 && !A0_was_pressed)
+		if (A0 && A1)
+		{
+			SM1_STATE = SM1_Reset;
+		}
+		// to prevent holding of button by checking previous A0 state
+		else if ((C < 9) && A0 && !A0_was_pressed)
 		{
 			SM1_STATE = SM1_PressInc;
 		}
 		else if ((C > 0) && A1 && !A1_was_pressed)
 		{
 			SM1_STATE = SM1_PressDec;
-		}
-		else if (A0 && A1)
-		{
-			SM1_STATE = SM1_Reset;
 		}
 		else
 			SM1_STATE = SM1_Wait;
 		break;
 	case SM1_Reset:
-		if ((C <= 9) && A0 && !A0_was_pressed)
+		if (A0 && A1)
+		{
+			SM1_STATE = SM1_Reset;
+		}
+		// to prevent holding of button by checking previous A0 state
+		else if ((C < 9) && A0 && !A0_was_pressed)
 		{
 			SM1_STATE = SM1_PressInc;
 		}
 		else if ((C > 0) && A1 && !A1_was_pressed)
 		{
 			SM1_STATE = SM1_PressDec;
-		}
-		else if (A0 && A1)
-		{
-			SM1_STATE = SM1_Reset;
 		}
 		else
 			SM1_STATE = SM1_Wait;
@@ -110,17 +116,23 @@ void TickCounter()
 	case SM1_SMStart:
 		break;
 	case SM1_Wait:
+		A0_was_pressed = A0;
+		A1_was_pressed = A1;
 		break;
 	case SM1_PressInc:
 		C += 1;
 		A0_was_pressed = A0;
+		A1_was_pressed = A1;
 		break;
 	case SM1_PressDec:
 		C -= 1;
+		A0_was_pressed = A0;
 		A1_was_pressed = A1;
 		break;
 	case SM1_Reset:
 		C = 0;
+		A0_was_pressed = 0;
+		A1_was_pressed = 0;
 		break;
 	}
 }
