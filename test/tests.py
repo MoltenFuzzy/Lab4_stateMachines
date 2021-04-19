@@ -105,4 +105,4 @@ tests = [
 	},
 ]
 
-watch = ["A0", "A1", "C", "SM1_STATE"]
+watch = ["PINA", "C", "SM1_STATE"]
