@@ -88,6 +88,7 @@ void TickLockSystem()
     case SM1_SMStart:
         break;
     case SM1_Init:
+        B = 0x00;
         break;
     case SM1_Pound:
         break;
