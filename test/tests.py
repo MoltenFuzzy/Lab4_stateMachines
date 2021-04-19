@@ -91,13 +91,10 @@ tests = [
 	{
 		"description": "count at 1, PINA: 0x01->0x03 => PORTC: 0",
 		"steps": [
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
+			{"inputs": [("PINA", 0x01)], "iterations": 5},
+			{"inputs": [("PINA", 0x03)], "iterations": 5},
 		],
-		"expected": [("PORTC", 0x40)],
+		"expected": [("PORTC", 0x00)],
 	},
 ]
 
