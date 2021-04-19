@@ -83,7 +83,6 @@ tests = [
 			{"inputs": [("PINA", 0x01)], "iterations": 5},
 			{"inputs": [("PINA", 0x00)], "iterations": 5},
 			{"inputs": [("PINA", 0x01)], "iterations": 5},
-			{"inputs": [("PINA", 0x00)], "iterations": 5},
 			{"inputs": [("PINA", 0x02)], "iterations": 5},
 		],
 		"expected": [("PORTC", 1)],
