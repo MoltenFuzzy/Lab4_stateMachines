@@ -127,6 +127,8 @@ void TickCounter()
         break;
     case SM1_Reset:
         C = 0;
+        A0_was_pressed = 0;
+        A1_was_pressed = 0;
         break;
     }
 }
