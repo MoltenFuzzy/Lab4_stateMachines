@@ -50,7 +50,7 @@ void TickLockSystem()
 		}
 		break;
 	case SM1_Pound:
-		if (A1 && !A2) // making sure # is not pressed at the same time
+		// if (A1) // making sure # is not pressed at the same time
 		{
 			SM1_STATE = SM1_Y;
 		}

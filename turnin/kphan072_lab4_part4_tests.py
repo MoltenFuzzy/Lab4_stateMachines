@@ -16,20 +16,42 @@
 # altered in between executions (unless preconditions are used).
 tests = [
 	{
-		"description": "PINA: 0x00 => PORTB: 0x00, PORTC: 0x00",
+		"description": "PINA: 0x00 => PORTB: 0",
 		"steps": [{"inputs": [("PINA", 0x00)], "iterations": 5}],
-		"expected": [("PORTB", 0x00), ("PORTC", 0x00)],
+		"expected": [("PORTB", 0)],
 	},
 	{
-		"description": "PINA: 0x42 => PORTB: 0x04, PORTC: 0x20",
-		"steps": [{"inputs": [("PINA", 0x42)], "iterations": 5}],
-		"expected": [("PORTB", 0x04), ("PORTC", 0x20)],
+		"description": "Press/release # (PA2), press/release Y(PA1) => PORTB: 1",
+		"steps": [
+			{"inputs": [("PINA", 0x04)], "iterations": 5},
+			{"inputs": [("PINA", 0x00)], "iterations": 5},
+			{"inputs": [("PINA", 0x02)], "iterations": 5},
+			{"inputs": [("PINA", 0x00)], "iterations": 5},
+		],
+		"expected": [("PORTB", 1)],
 	},
 	{
-		"description": "PINA: 0xA5 => PORTB: 0x0A, PORTC: 0x50",
-		"steps": [{"inputs": [("PINA", 0xA5)], "iterations": 5}],
-		"expected": [("PORTB", 0x0A), ("PORTC", 0x50)],
+		"description": "PINA7 locks the door",
+		"steps": [{"inputs": [("PINA", 0x80)], "iterations": 5}],
+		"expected": [("PORTB", 0)],
+	},
+	{
+		"description": "Press # (PA2) then Y (PA1) immediately => PORTB: 0",
+		"steps": [
+			{"inputs": [("PINA", 0x04)], "iterations": 5},
+			{"inputs": [("PINA", 0x02)], "iterations": 5},
+		],
+		"expected": [("PORTB", 0)],
+	},
+	{
+		"description": "Press # and Y then release # then Y => PORTB: 0",
+		"steps": [
+			{"inputs": [("PINA", 0x06)], "iterations": 5},
+			{"inputs": [("PINA", 0x02)], "iterations": 5},
+			{"inputs": [("PINA", 0x00)], "iterations": 5},
+		],
+		"expected": [("PORTB", 0)],
 	},
 ]
 
-watch = ["SM1_STATE"]
+watch = ["SM1_STATE", "B", "A"]

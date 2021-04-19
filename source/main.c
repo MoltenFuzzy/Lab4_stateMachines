@@ -22,7 +22,9 @@ enum SM1_STATES
     SM1_SMStart,
     SM1_Init,
     SM1_Pound,
+    SM1_Pound2,
     SM1_Y,
+    SM1_Y2,
     SM1_Lock,
     SM1_Unlock
 } SM1_STATE;
@@ -50,18 +52,31 @@ void TickLockSystem()
         }
         break;
     case SM1_Pound:
-        if (A1 && !A2) // making sure # is not pressed at the same time
+        // if (A1) // making sure # is not pressed at the same time
         {
             SM1_STATE = SM1_Y;
+        }
+        break;
+    case SM1_Pound2:
+        // if (A1) // making sure # is not pressed at the same time
+        {
+            SM1_STATE = SM1_Y2;
         }
         break;
     case SM1_Y:
         SM1_STATE = SM1_Unlock;
         break;
+    case SM1_Y2:
+        SM1_STATE = SM1_Lock;
+        break;
     case SM1_Unlock:
         if (A1)
         {
             SM1_STATE = SM1_Lock;
+        }
+        else if (A2)
+        {
+            SM1_STATE = SM1_Pound2;
         }
         else
         {
@@ -88,11 +103,14 @@ void TickLockSystem()
     case SM1_SMStart:
         break;
     case SM1_Init:
-        B = 0x00;
         break;
     case SM1_Pound:
         break;
+    case SM1_Pound2:
+        break;
     case SM1_Y:
+        break;
+    case SM1_Y2:
         break;
     case SM1_Unlock:
         B = 0x01;
