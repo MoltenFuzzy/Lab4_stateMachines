@@ -65,7 +65,7 @@ tests = [
 			{"inputs": [("PINA", 0x02)], "iterations": 5},
 			{"inputs": [("PINA", 0x03)], "iterations": 5},
 		],
-		"expected": [("PORTC", 0x40)],
+		"expected": [("PORTC", 0)],
 	},
 	{
 		"description": "count at 0, PINA: 0x02 => PORTC: 0",
