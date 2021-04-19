@@ -108,4 +108,4 @@ tests = [
 watch = ["A0"]
 watch = ["A1"]
 watch = ["SM1_STATE"]
-watch = ["PORTC"]
+watch = ["C"]
