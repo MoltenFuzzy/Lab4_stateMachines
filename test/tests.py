@@ -105,7 +105,7 @@ tests = [
 	},
 ]
 
-watch0 = ["A0"]
-watch1 = ["A1"]
-watch2 = ["SM1_STATE"]
-watch3 = ["C"]
+# watch = ["A0"]
+# watch = ["A1"]
+# watch = ["C"]
+watch = ["SM1_STATE"]
